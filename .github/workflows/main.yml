@@ -32,7 +32,7 @@ jobs:
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
         with:
           # Github access token token used to deploy on gh_pages. You can find it on Github.
-          github_access_token: 4046029d0a75c6933af64d4d611fcd98fe777e76
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
           # base href for the app
           base_href: /angular-tour-of-heroes-tutorial/ # optional, default is /
           # branch on which the angular build will be deployed
