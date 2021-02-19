@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NotifierModule } from 'angular-notifier';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { HeroService } from './hero.service';
+import { AlternativeHeroService } from './alternative-hero.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-
+    NotifierModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
@@ -39,7 +42,9 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [],
+  providers: [
+    { provide: HeroService, useClass: AlternativeHeroService },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
