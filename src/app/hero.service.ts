@@ -6,11 +6,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'api/heroes';  // URL to web api
+  protected heroesUrl = 'api/heroes';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -80,7 +81,7 @@ export class HeroService {
    * @param result - optional value to return as the observable result
    */
   
-   private handleError<T>(operation = 'operation', result?: T) {
+   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
@@ -99,6 +100,6 @@ export class HeroService {
   }
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    protected http: HttpClient,
+    protected messageService: MessageService) { }
 }
