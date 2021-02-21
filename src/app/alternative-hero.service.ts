@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { NotifierService } from 'angular-notifier';
@@ -9,6 +9,7 @@ import { NotifierService } from 'angular-notifier';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { MessageService } from './message.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,16 +20,16 @@ export class AlternativeHeroService extends HeroService {
       catchError(this.handleError<Hero>('addHero'))
       );
     }
-    
-  private alert(name: string) {
+
+  private alert(name: string): void {
     this.alertService.notify('success', name);
   }
-    
+
   constructor(
     protected http: HttpClient,
     protected messageSercive: MessageService,
     private alertService: NotifierService) {
       super(http, messageSercive);
   }
-    
+
 }
